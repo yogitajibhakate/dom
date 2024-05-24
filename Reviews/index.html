@@ -53,37 +53,101 @@
             color: #333;
             margin-bottom: 20px;
         }
-        button{
+        
+        button {
             border-radius: 50%;
             background-color: #f44336;
         }
-        .btn{
-            border-radius:15%;
+
+        .btn {
+            border-radius: 15%;
             background-color: rgb(216, 165, 99);
         }
     </style>
 </head>
 <body>
     <h2>Our Reviews</h2>
-    <div class="counter-container">
+    <div class="counter-container" id="firstDiv">
         <div class="img-container">
             <img src="https://photoform.com.au/wp-content/uploads/2023/05/LinkedIn-Fashion-Profile-Picture.jpg" id="person-img" alt="LinkedIn-Profile-Picture">
         </div>
         <h4 id="author">Jane Smith</h4>
-        <p id="job">UX,UI Designer</p>
-        <p>Hii I'm a UI/UX Designer with a degree in product design.My interest in Human Behaviour and Human-Centered solutions has motivated me to make the switch to the UX field.</p>
+        <p id="job">UX, UI Designer</p>
+        <p id="info">Hi, I'm a UI/UX Designer with a degree in product design. My interest in Human Behaviour and Human-Centered solutions has motivated me to make the switch to the UX field.</p>
         <div class="button-container">
-            <button class="prev-btn">
+            <button class="prev-btn" id="prevBtn">
                 <i class="fa-solid fa-less-than"></i>
             </button>
-            <button class="next-btn">
+            <button class="next-btn" id="nextBtn">
                 <i class="fa-solid fa-greater-than"></i>            
             </button>
         </div>
         <br>
-        <button class="btn">suprise me</button>
-    
+        <button class="btn" id="surpriseBtn">Surprise me</button>
     </div>
-    
+
+    <script>
+        const r = [
+            {
+                img: "https://photoform.com.au/wp-content/uploads/2023/05/LinkedIn-Fashion-Profile-Picture.jpg",
+                author: "John Doe",
+                job: "Software Engineer",
+                info: "Hi, I'm a Software Engineer with a passion for creating innovative solutions and improving user experiences through technology."
+            },
+            {
+                img: "https://randomuser.me/api/portraits/men/32.jpg",
+                author: "Mike Johnson",
+                job: "Product Manager",
+                info: "I oversee the development and delivery of products, ensuring they meet market needs and user expectations."
+            },
+            {
+                img: "https://randomuser.me/api/portraits/women/44.jpg",
+                author: "Emily Davis",
+                job: "Graphic Designer",
+                info: "With a keen eye for aesthetics, I create visually appealing designs that communicate the desired message effectively."
+            },
+            {
+                img: "https://randomuser.me/api/portraits/men/47.jpg",
+                author: "Chris Brown",
+                job: "Web Developer",
+                info: "I specialize in building responsive and dynamic websites, ensuring a seamless user experience across devices."
+            }
+        ];
+
+        let i = 0;
+
+        function showReview(index) {
+            const review = r[index];
+            document.getElementById('person-img').src = review.img;
+            document.getElementById('author').textContent = review.author;
+            document.getElementById('job').textContent = review.job;
+            document.getElementById('info').textContent = review.info;
+        }
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            i += 1;
+            if (i >= r.length) {
+                i = 0;
+            }
+            showReview(i);
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', function() {
+            i -= 1;
+            if (i < 0) {
+                i = r.length - 1;
+            }
+            showReview(i);
+        });
+
+
+        // I took this line from chatgpt
+        document.getElementById('surpriseBtn').addEventListener('click', function() {
+            i = Math.floor(Math.random() * r.length);
+            showReview(i);
+        });
+
+        showReview(i);
+    </script>
 </body>
 </html>
