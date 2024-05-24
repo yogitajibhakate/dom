@@ -50,10 +50,13 @@
 
         increaseBtn.addEventListener('click', () => {
             counter.innerText = parseInt(counter.innerText) + 1;
+            counter.style.color="green"
         });
 
         decreaseBtn.addEventListener('click', () => {
             counter.innerText = parseInt(counter.innerText) - 1;
+            counter.style.color="red"
+
         });
 
         resetBtn.addEventListener('click', () => {
