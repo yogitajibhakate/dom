@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/premium-photo/interior-living-room-with-white-sofa-3d-rendering_46483-572.jpg?size=626&ext=jpg&ga=GA1.1.44546679.1716508800&semt=ais_user');
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #content {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 20px;
+            width: 20%;
+            height: 15%;
+            text-align: center;
+        }
+        button {
+            background-color: #9ec0f8;
+            height: 30px;
+        }
+        .overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(169, 187, 236, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .icon button {
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <main id="content">
+        <h1>Modal Project</h1>
+        <button id="openBtn">Open Modal</button>
+    </main>
+    <div class="overlay" id="overlay">
+        <div class="container">
+            <h2>Modal Content</h2>
+            <div class="icon">
+                <button id="closeBtn" class="btn">
+                    <i class="fas fa-times">×</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const openModalBtn = document.getElementById('openBtn');
+        const overlay = document.getElementById('overlay');
+        const closeModalBtn = document.getElementById('closeBtn');
+        const mainContent = document.getElementById('content');
+
+        openModalBtn.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            mainContent.style.display = 'none';
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            mainContent.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
