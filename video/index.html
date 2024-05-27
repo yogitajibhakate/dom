@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Video</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .video-container {
+            position: fixed;
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            color: white;
+        }
+        .content button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .play-btn {
+            background-color: green;
+            color: white;
+        }
+        .pause-btn {
+            background-color: red;
+            color: white;
+        }
+        h1{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="bg-video" src="https://videos.pexels.com/video-files/4524597/4524597-hd_1920_1080_25fps.mp4" type="video/mp4" autoplay muted loop></video>
+    </div>
+    <div class="content">
+        <h1>Video Project</h1>
+        <button class="play-btn" id="play-btn">Play</button>
+        <button class="pause-btn" id="pause-btn">Pause</button>
+    </div>
+    <script>
+        const video = document.getElementById('bg-video');
+        const playButton = document.getElementById('play-btn');
+        const pauseButton = document.getElementById('pause-btn');
+
+        playButton.addEventListener('click', () => {
+            video.play();
+        });
+
+        pauseButton.addEventListener('click', () => {
+            video.pause();
+        });
+    </script>
+</body>
+</html>
