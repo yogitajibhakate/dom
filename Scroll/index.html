@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Scroll Project</title>
+    <style>
+        body {
+            height: 300vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        header {
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        a {
+            padding: 30px;
+            text-decoration: none;
+            color: hsl(140, 60%, 15%);
+            font-weight: bold;
+            font-size: larger;
+            cursor: pointer; /* Add cursor pointer */
+        }
+
+        header .logo img {
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        main {
+            text-align: center;
+            padding-top: 120px;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: 100% auto; /* Adjust background size to cover 100% width and auto height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0d/e9/be/1e/rocky-beach-not-recommended.jpg?w=1200&h=-1&s=1');
+        }
+
+        main h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        main p {
+            width: 60%;
+            margin: 0 auto;
+            line-height: 1.6;
+            height: 40vh;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        section {
+            background-color: rgb(233, 235, 234);
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0.5, 0.5, 0.2, 0.3); /* Add shadow effect */
+            border-radius: 10px;
+            width: 70%;
+            height: 50vh;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            margin: 100px auto 0;
+        }
+        footer{
+            background-color: hwb(174 65% 22%);
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            text-align: center;
+            margin-top:50px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB0WCwwLReD6dXyaBlKQy_kpec9NR0s22vflY50w8rOA&s" alt="Logo">
+        </div>
+        <div class="buttons">
+            <a href="#" id="home-link">Home</a>
+            <a href="#" id="services-link">Services</a>
+            <a href="#" id="about-link">About</a>
+            <a href="#" id="tours-link">Tours</a>
+        </div>
+    </header>
+
+    <main>
+        <h1>SCROLL PROJECT</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima, nemo laudantium voluptatibus magnam placeat ratione recusandae architecto quod! Laboriosam odio nam labore animi molestias veritatis? Numquam molestiae enim odio obcaecati.</p>
+        <button id="explore-tours-button">EXPLORE TOURS</button>
+    </main>
+
+    <h1 id="about" class="about">About Me</h1>
+    <section>
+        <!-- About section content -->
+    </section>
+    <h1 id="services" class="services">Our Services</h1>
+    <section>
+        <!-- Services section content -->
+    </section>
+    <h1 id="tours" class="tours">Our Tours</h1>
+    <section>
+        <!-- Tours section content -->
+    </section>
+    <footer>
+        <h3>yogita jibhakate</h3>
+        <!-- footer section content -->
+
+    </footer>
+
+    <script>
+        const about=document.getElementById('about-link');
+        const services= document.getElementById('services-link');
+        const tour=document.getElementById('tours-link');
+        const explore=document.getElementById('explore-tours-button')
+
+        about.addEventListener('click', function(event) {
+            event.preventDefault(); 
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        services.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        tour.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('tours').scrollIntoView({ behavior: 'smooth' });
+        });
+        explore.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('tours').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
