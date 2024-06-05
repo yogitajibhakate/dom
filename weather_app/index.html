@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            box-shadow: 0 0 50px rgba(0.5, 0.5, 0.2, 0.3);
+            border-radius: 10px;
+            width: 50%;
+            height: 60vh;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            margin: 200px auto 0; 
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 80%;
+            max-width: 300px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            background-color: #a4ddeb;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #a2deed;
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        #weather {
+            background: rgba(1, 15, 21, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            margin-left:13%;
+        }
+        #weather img {
+            width: 20%;
+            height: auto;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            display: none;
+            margin-left:40% ;
+            
+        }
+        h2 {
+            margin-bottom: 10px;
+        }
+        p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <input type="text" id="city" placeholder="Enter city name">
+        <button id="getWeather">Get Weather</button>
+        <div id="weather">
+            <img id="coldImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT40jaO5GmIWP4Ml74vwxTZK0FmllQNGMlpbg&s" alt="Cold Weather">
+            <img id="hotImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgb0H-HdnvpSeTWRg1VeLN2qN0M5HF_FyJvQ&s" alt="Hot Weather">
+            <img id="rainyImage" src="https://static.india.com/wp-content/uploads/2021/08/Rain-alert-in-maharashtra-Weather-forecast-in-maharashtra-Heavy-rains-in-next-2-to-4-days-in-the-state-Rainfall-is-likely-to-be-heavy-in-Marathwada-Konkan-and-Central-Maharashtra-1.jpg?impolicy=Medium_Resize&w=1200&h=800" alt="Rainy Weather">
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('getWeather').addEventListener('click', function() {
+            const city = document.getElementById('city').value;
+            if (city) {
+                const apiKey = '960752d39e1a6d678a24be46fcee7b04';  
+                const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const weatherDiv = document.getElementById('weather');
+                        const coldImage = document.getElementById('coldImage');
+                        const hotImage = document.getElementById('hotImage');
+                        const rainyImage = document.getElementById('rainyImage');
+
+                        weatherDiv.innerHTML = '';
+
+                        weatherDiv.appendChild(coldImage);
+                        weatherDiv.appendChild(hotImage);
+                        weatherDiv.appendChild(rainyImage);
+
+                        coldImage.style.display = 'none';
+                        hotImage.style.display = 'none';
+                        rainyImage.style.display = 'none';
+
+                        if (data.main && data.weather) {
+                            const temp = data.main.temp;
+                            const description = data.weather[0].description.toLowerCase();
+
+                            if (description.includes('rain')) {
+                                rainyImage.style.display = 'block';
+                            } else if (temp <= 25) {
+                                coldImage.style.display = 'block';
+                            } else if (temp >= 26) {
+                                hotImage.style.display = 'block';
+                            }
+
+                            const weatherInfo = `
+                                <h2>${data.name}, ${data.sys.country}</h2>
+                                <p>Temperature: ${data.main.temp} °C</p>
+                                <p>Weather: ${data.weather[0].description}</p>
+                                <p>Humidity: ${data.main.humidity}%</p>
+                                <p>Wind Speed: ${data.wind.speed} m/s</p>
+                            `;
+                            weatherDiv.innerHTML += weatherInfo;
+                        } else {
+                            weatherDiv.innerHTML = `<p>${data.message}</p>`;
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching weather data:', error);
+                        document.getElementById('weather').innerHTML = '<p>Error fetching weather data. Please try again later.</p>';
+                    });
+            } else {
+                alert('Please enter a city name.');
+            }
+        });
+    </script>
+</body>
+</html>
